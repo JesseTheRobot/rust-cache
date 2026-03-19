@@ -56,6 +56,9 @@ inputs:
     description: "Determines whether to cache ${CARGO_HOME}/bin."
     required: false
     default: "true"
+  suffix-key:
+    description: "A suffix appended to the cache key AFTER all hashes. Only affects the save key, not the restore prefix, enabling per-commit caching with cross-commit restore fallback."
+    required: false
   lookup-only:
     description: "Check if a cache entry exists without downloading the cache"
     required: false

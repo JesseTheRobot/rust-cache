@@ -267,6 +267,14 @@ export class CacheConfig {
       key += `-${lockHash}`;
     }
 
+    // suffix-key is appended AFTER all hashes, so it only affects the save key.
+    // The restoreKey (set earlier) does not include it, enabling prefix-based
+    // fallback across different suffix values (e.g. per-commit SHA).
+    const suffixKey = core.getInput("suffix-key");
+    if (suffixKey) {
+      key += `-${suffixKey}`;
+    }
+
     self.cacheKey = key;
 
     self.cachePaths = [path.join(CARGO_HOME, "registry"), path.join(CARGO_HOME, "git")];
